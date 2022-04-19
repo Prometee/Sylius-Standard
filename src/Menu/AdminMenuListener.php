@@ -17,7 +17,6 @@ final class AdminMenuListener
             ->addChild('supplier')
             ->setLabel('app.ui.supplier');
 
-
         // Add a submenu to it
         $newSubmenu
             ->addChild('supplier', [

@@ -17,6 +17,9 @@ class NeverHasThosePromotionsAppliedRuleChecker implements RuleCheckerInterface
     {
     }
 
+    /**
+     * @param array<string[]> $configuration
+     */
     public function isEligible(PromotionSubjectInterface $subject, array $configuration): bool
     {
         if (false === $subject instanceof OrderInterface) {

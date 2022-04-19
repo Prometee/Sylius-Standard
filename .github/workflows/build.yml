@@ -129,7 +129,7 @@ jobs:
                 name: Prepare test application assets
                 run: |
                     bin/console assets:install public -vvv
-                    yarn build
+                    yarn build production
 
             -
                 name: Prepare test application cache

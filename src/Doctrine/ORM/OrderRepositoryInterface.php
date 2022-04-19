@@ -10,7 +10,7 @@ use Sylius\Component\Core\Repository\OrderRepositoryInterface as BaseOrderReposi
 interface OrderRepositoryInterface extends BaseOrderRepositoryInterface
 {
     /**
-     * @param array|string[] $promotionCodes
+     * @param string[] $promotionCodes
      */
     public function countByCustomerAndPromotions(
         CustomerInterface $customer,

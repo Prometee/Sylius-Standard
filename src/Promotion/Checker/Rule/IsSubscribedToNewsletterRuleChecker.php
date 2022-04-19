@@ -12,6 +12,9 @@ use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 
 class IsSubscribedToNewsletterRuleChecker implements RuleCheckerInterface
 {
+    /**
+     * @param bool[] $configuration
+     */
     public function isEligible(PromotionSubjectInterface $subject, array $configuration): bool
     {
         if (false === $subject instanceof OrderInterface) {

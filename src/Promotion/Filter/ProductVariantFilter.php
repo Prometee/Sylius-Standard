@@ -17,9 +17,14 @@ use Sylius\Component\Core\Promotion\Filter\FilterInterface;
 
 final class ProductVariantFilter implements FilterInterface
 {
+    /**
+     * @param array<array<string[]>> $configuration
+     */
     public function filter(array $items, array $configuration): array
     {
-        if (empty($configuration['filters']['product_variants_filter']['product_variants'])) {
+        /** @var string[] $product_variants */
+        $product_variants = $configuration['filters']['product_variants_filter']['product_variants'];
+        if (empty($product_variants)) {
             return $items;
         }
 
@@ -29,7 +34,7 @@ final class ProductVariantFilter implements FilterInterface
             if (null === $variant) {
                 continue;
             }
-            if (in_array($variant->getCode(), $configuration['filters']['product_variants_filter']['product_variants'], true)) {
+            if (in_array($variant->getCode(), $product_variants, true)) {
                 $filteredItems[] = $item;
             }
         }

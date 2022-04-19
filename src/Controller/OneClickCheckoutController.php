@@ -38,8 +38,8 @@ final class OneClickCheckoutController
     ) {
     }
 
-    public function buyNowAction(int $variantId): Response {
-
+    public function buyNowAction(int $variantId): Response
+    {
         /** @var ChannelInterface $channel */
         $channel = $this->shopperContext->getChannel();
 
@@ -83,6 +83,7 @@ final class OneClickCheckoutController
         $order->setChannel($channel);
         $order->setCurrencyCode($baseCurrency->getCode());
         $order->setLocaleCode($this->shopperContext->getLocaleCode());
+
         return $order;
     }
 

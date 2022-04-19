@@ -22,19 +22,13 @@ class Supplier implements SupplierInterface
      */
     protected ?int $id;
 
-    /**
-     * @ORM\Column(name="name", type="string")
-     */
+    /** @ORM\Column(name="name", type="string") */
     protected ?string $name;
 
-    /**
-     * @ORM\Column(name="email", type="string")
-     */
+    /** @ORM\Column(name="email", type="string") */
     protected ?string $email;
 
-    /**
-     * @ORM\Column(name="status", type="string")
-     */
+    /** @ORM\Column(name="status", type="string") */
     protected ?string $status = SupplierInterface::STATUS_NEW;
 
     public function __toString(): string

@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Doctrine\ORM;
 
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\PromotionRepository as BasePromotionRepository;
+use Sylius\Component\Core\Model\PromotionInterface;
 
 class PromotionRepository extends BasePromotionRepository implements PromotionRepositoryInterface
 {
     public function findByNamePart(string $name): array
     {
-        return $this
+        /** @var PromotionInterface[] $promotions */
+        $promotions = $this
             ->getEntityManager()
             ->createQueryBuilder()
             ->select('o.id, o.code, o.name')
@@ -18,7 +20,8 @@ class PromotionRepository extends BasePromotionRepository implements PromotionRe
             ->andWhere('o.name LIKE :name')
             ->setParameter('name', '%' . $name . '%')
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
+
+        return $promotions;
     }
 }

@@ -17,6 +17,9 @@ final class PromotionsToCodesTransformer implements DataTransformerInterface
     {
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     public function transform($value): Collection
     {
         Assert::nullOrIsArray($value);
@@ -28,6 +31,9 @@ final class PromotionsToCodesTransformer implements DataTransformerInterface
         return new ArrayCollection($this->promotionRepository->findBy(['code' => $value]));
     }
 
+    /**
+     * @return string[]
+     */
     public function reverseTransform($value): array
     {
         Assert::isInstanceOf($value, Collection::class);
@@ -36,7 +42,9 @@ final class PromotionsToCodesTransformer implements DataTransformerInterface
 
         foreach ($value as $promotion) {
             Assert::isInstanceOf($promotion, PromotionInterface::class);
-            $promotionCodes[] = $promotion->getCode();
+            $code = $promotion->getCode();
+            Assert::notNull($code);
+            $promotionCodes[] = $code;
         }
 
         return $promotionCodes;

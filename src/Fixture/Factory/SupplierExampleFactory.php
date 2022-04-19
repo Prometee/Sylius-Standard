@@ -21,7 +21,7 @@ final class SupplierExampleFactory extends AbstractExampleFactory
     private OptionsResolver $optionsResolver;
 
     public function __construct(
-        private SyliusFactoryInterface      $supplierFactory,
+        private SyliusFactoryInterface $supplierFactory,
         private StateMachineFactoryInterface $stateMachineFactory
     ) {
         $this->faker = Factory::create();
@@ -30,6 +30,9 @@ final class SupplierExampleFactory extends AbstractExampleFactory
         $this->configureOptions($this->optionsResolver);
     }
 
+    /**
+     * @param string[] $options
+     */
     public function create(array $options = []): SupplierInterface
     {
         $options = $this->optionsResolver->resolve($options);
@@ -48,7 +51,7 @@ final class SupplierExampleFactory extends AbstractExampleFactory
     {
         $resolver
             ->setDefault('name', fn (Options $options): string => $this->faker->company())
-            ->setDefault('email', fn(Options $options): string => $this->faker->email())
+            ->setDefault('email', fn (Options $options): string => $this->faker->email())
             ->setDefault('status', null)
         ;
     }

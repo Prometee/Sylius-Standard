@@ -28,6 +28,7 @@ final class ChannelBasedUnitPercentageDiscountConfigurationType extends Abstract
             'entry_options' => function (ChannelInterface $channel) {
                 $baseCurrency = $channel->getBaseCurrency();
                 Assert::notNull($baseCurrency);
+
                 return [
                     'label' => $channel->getName(),
                     'currency' => $baseCurrency->getCode(),
