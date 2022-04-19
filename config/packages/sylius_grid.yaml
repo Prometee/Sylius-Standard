@@ -1,0 +1,65 @@
+sylius_grid:
+    grids:
+        app_admin_supplier:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: 'expr:parameter("app.model.supplier.class")'
+            fields:
+                name:
+                    type: string
+                    label: sylius.ui.name
+                email:
+                    type: string
+                    label: sylius.ui.email
+                status:
+                    type: twig
+                    label: sylius.ui.status
+                    sortable: ~
+                    options:
+                        template: "@SyliusUi/Grid/Field/state.html.twig"
+                        vars:
+                            labels: "Admin/Supplier/Label/Status"
+            filters:
+                name:
+                    type: string
+                    label: sylius.ui.name
+                email:
+                    type: string
+                    label: sylius.ui.email
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    accept:
+                        type: apply_transition
+                        label: sylius.ui.accept
+                        icon: checkmark
+                        options:
+                            link:
+                                route: app_admin_supplier_accept
+                                parameters:
+                                    id: resource.id
+                            class: green
+                            transition: accept
+                            graph: app_supplier
+                    reject:
+                        type: apply_transition
+                        label: sylius.ui.reject
+                        icon: remove
+                        options:
+                            link:
+                                route: app_admin_supplier_reject
+                                parameters:
+                                    id: resource.id
+                            class: yellow
+                            transition: reject
+                            graph: app_supplier
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete

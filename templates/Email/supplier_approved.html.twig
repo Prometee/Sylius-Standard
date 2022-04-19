@@ -1,0 +1,24 @@
+{% extends '@SyliusShop/Email/layout.html.twig' %}
+{# @var \App\Entity\SupplierInterface[] supplier #}
+{% block subject %}
+    {{ 'app.email.supplier_approved.title'|trans([], null, localeCode) }}
+{% endblock %}
+
+{% block content %}
+
+    {% set url = channel.hostname is not null
+        ? 'https://' ~ channel.hostname ~ path('sylius_shop_default_locale')
+        : url('sylius_shop_default_locale')
+    %}
+
+    {% autoescape %}
+        <h1>{{ 'app.email.supplier_approved.heading1'|trans({
+                '%name%': supplier.name
+            }, null, localeCode) }}</h1>
+
+        <p>
+            {{ 'app.email.supplier_approved.sentence1'|trans([], null, localeCode) }}
+        </p>
+
+    {% endautoescape %}
+{% endblock %}

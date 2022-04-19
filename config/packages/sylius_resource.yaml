@@ -1,0 +1,8 @@
+sylius_resource:
+    resources:
+        app.supplier:
+            driver: doctrine/orm
+            classes:
+                model: App\Entity\Supplier
+                repository: App\Doctrine\Repository\SupplierRepository
+                form: App\Form\Type\SupplierType

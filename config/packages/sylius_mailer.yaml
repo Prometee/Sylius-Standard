@@ -1,0 +1,5 @@
+sylius_mailer:
+    emails:
+        app_supplier_approved:
+            subject: app.email.supplier_approved.title
+            template: 'Email/supplier_approved.html.twig'

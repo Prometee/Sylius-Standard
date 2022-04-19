@@ -1,0 +1,5 @@
+app:
+    supplier:
+        accept: 'Supplier has been successfully accepted.'
+        reject: 'Supplier has been successfully rejected.'
+        wait_for_the_acceptation: 'The supplier is waiting for the acceptation.'

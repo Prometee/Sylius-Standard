@@ -2,6 +2,9 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en_US
+    app.form.supplier.validation_groups:
+        - sylius
+        - app_supplier
 
 services:
     # Default configuration for services in *this* file
@@ -33,3 +36,43 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Menu\AdminMenuListener:
+        tags:
+          - name: kernel.event_listener
+            event: sylius.menu.admin.main
+            method: addAdminMenuItems
+            
+    App\Form\Type\SupplierType:
+        arguments:
+            $dataClass: '%app.model.supplier.class%'
+            $validationGroups: '%app.form.supplier.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    App\Email\SendSupplierApprovedEmail:
+        public: true
+        arguments:
+            $emailCode: 'app_supplier_approved'
+
+    App\Fixture\SupplierFixture:
+        public: true
+        arguments:
+            $objectManager: '@app.manager.supplier'
+            $exampleFactory: '@App\Fixture\Factory\SupplierExampleFactory'
+        tags:
+            - { name: sylius_fixtures.fixture }
+
+    App\AttributeType\RangeAttributeType:
+        tags:
+            - name: sylius.attribute.type
+              attribute_type: !php/const App\AttributeType\RangeAttributeType::TYPE
+              configuration_form_type: App\Form\Type\RangeAttributeConfigurationType
+              form_type: App\Form\AttributeType\RangeAttributeType
+              label: Range
+
+    App\Controller\OneClickCheckoutController:
+        public: true
+        arguments:
+            $cartItemFactoryInterface: '@sylius.custom_factory.order_item'
+            $orderManager: '@sylius.manager.order'

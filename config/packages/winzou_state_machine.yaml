@@ -1,0 +1,24 @@
+winzou_state_machine:
+    app_supplier:
+        class: '%app.model.supplier.class%'
+        property_path: status
+        graph: app_supplier
+        state_machine_class: '%sylius.state_machine.class%'
+        states:
+            new: ~
+            accepted: ~
+            rejected: ~
+        transitions:
+            accept:
+                from: [new]
+                to: accepted
+            reject:
+                from: [new]
+                to: rejected
+        callbacks:
+            after:
+                app_send_email:
+                    on: ['accept']
+                    do: ['@App\Email\SendSupplierApprovedEmail', 'send']
+                    args: ['object']
+                    priority: -100

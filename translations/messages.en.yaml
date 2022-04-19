@@ -1,0 +1,38 @@
+sylius:
+    ui:
+        range: Range
+    form:
+        attribute_type:
+            range: Range
+app:
+    ui:
+        supplier: Supplier
+        suppliers: Suppliers
+        new_supplier: New supplier
+        attribute_type:
+            range: Range
+        checkout:
+            one_click: Buy now !
+            one_click_no_default_address: Add a default address to buy now !
+            one_click_not_logged_in: Login to buy now !
+    form:
+        supplier:
+            name: Name
+            email: Email
+        range_attribute_type:
+            min_label: Min
+            max_label: Max
+            unit_label: Unit
+            unit:
+                meter: meter (m)
+                second: second (s)
+                mole: mole (mole)
+                ampere: ampere (A)
+                kelvin: kelvin (K)
+                candela: candela (cd)
+                kilogram: kilogram (kg)
+    email:
+        supplier_approved:
+            title: Supplier approved
+            heading1: Hi %name% !
+            sentence1: Your request has been approved
