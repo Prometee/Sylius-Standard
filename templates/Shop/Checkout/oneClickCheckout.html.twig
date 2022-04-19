@@ -1,0 +1,25 @@
+{% set url = path('sylius_shop_login') %}
+{% set label = 'app.ui.checkout.one_click_not_logged_in'|trans %}
+
+{% if sylius.customer and sylius.customer.defaultAddress %}
+    {% set url = path('app_shop_one_click_checkout', { variantId: order_item.variant.id }) %}
+    {% set label = 'app.ui.checkout.one_click'|trans %}
+{% elseif sylius.customer and not sylius.customer.defaultAddress %}
+    {% set url = path('sylius_shop_account_address_book_index') %}
+    {% set label = 'app.ui.checkout.one_click_no_default_address'|trans %}
+{% endif %}
+
+<div class="ui buttons">
+    <a class="ui huge primary icon labeled button" href="{{ url }}">
+        <i class="cart icon"></i>
+        {{ label }}
+    </a>
+    <div class="or" data-text="{{ 'sylius.ui.or'|trans }}"></div>
+    <button type="submit" class="ui huge primary icon labeled button" {{ sylius_test_html_attribute('add-to-cart-button') }}><i class="cart icon"></i> {{ 'sylius.ui.add_to_cart'|trans }}</button>
+</div>
+<style>
+    /* Hide the original button */
+    #sylius-product-selecting-variant style+button {
+        display: none;
+    }
+</style>

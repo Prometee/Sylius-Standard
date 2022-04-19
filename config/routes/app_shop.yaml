@@ -1,0 +1,10 @@
+app_shop_one_click_checkout:
+    path: /{_locale}/checkout/one-click/{variantId}
+    defaults:
+        _controller: App\Controller\OneClickCheckoutController:buyNowAction
+        # Due to the CheckoutResolver we need to set the state_machine graph
+        # and transition used to do this operation
+        _sylius:
+            state_machine:
+                graph: sylius_order_checkout
+                transition: address

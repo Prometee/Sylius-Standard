@@ -1,0 +1,7 @@
+sylius_ui:
+    events:
+        sylius.shop.product.show.add_to_cart_form:
+            blocks:
+                one_click_checkout:
+                    template: 'Shop/Checkout/oneClickCheckout.html.twig'
+                    priority: -10
