@@ -38,3 +38,31 @@ app_admin_supplier_reject:
                 transition: reject
             redirect: referer
             flash: app.supplier.reject
+
+app_admin_ajax_promotion_by_name:
+    path: '/%sylius_admin.path_name%/ajax/promotion/search'
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.promotion:indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [Autocomplete]
+            permission: true
+            repository:
+                method: findByNamePart
+                arguments:
+                    name: $name
+
+app_admin_ajax_promotion_by_codes:
+    path: '/%sylius_admin.path_name%/ajax/promotion/codes'
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.promotion:indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [Default]
+            permission: true
+            repository:
+                method: findByCode
+                arguments:
+                    - $code

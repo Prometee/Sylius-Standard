@@ -90,6 +90,7 @@ sylius_order:
         order:
             classes:
                 model: App\Entity\Order\Order
+                repository: App\Doctrine\ORM\OrderRepository
         order_item:
             classes:
                 model: App\Entity\Order\OrderItem
@@ -165,6 +166,7 @@ sylius_promotion:
         promotion:
             classes:
                 model: App\Entity\Promotion\Promotion
+                repository: App\Doctrine\ORM\PromotionRepository
         promotion_rule:
             classes:
                 model: App\Entity\Promotion\PromotionRule

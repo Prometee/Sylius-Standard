@@ -76,3 +76,48 @@ services:
         arguments:
             $cartItemFactoryInterface: '@sylius.custom_factory.order_item'
             $orderManager: '@sylius.manager.order'
+
+    App\Promotion\Checker\Rule\NeverHasThosePromotionsAppliedRuleChecker:
+        arguments:
+            $orderRepository: '@sylius.repository.order'
+        tags:
+            - name: sylius.promotion_rule_checker
+              type: never_has_those_promotions_applied
+              form_type: App\Promotion\Form\Type\Rule\NeverHasThosePromotionsAppliedConfigurationType
+              label: app.ui.promotion_rule.rules.never_has_those_promotions_applied
+
+    App\Promotion\Form\DataTransformer\PromotionsToCodesTransformer:
+        arguments:
+            $promotionRepository: '@sylius.repository.promotion'
+
+    App\Promotion\Form\Type\Rule\NeverHasThosePromotionsAppliedConfigurationType:
+        arguments:
+            $promotionsToCodesTransformer: '@App\Promotion\Form\DataTransformer\PromotionsToCodesTransformer'
+        tags:
+            - { name: form.type }
+
+    App\Promotion\Checker\Rule\IsSubscribedToNewsletterRuleChecker:
+        tags:
+            - name: sylius.promotion_rule_checker
+              type: is_subscribed_to_newsletter
+              form_type: App\Promotion\Form\Type\Rule\IsSubscribedToNewsletterConfigurationType
+              label: app.ui.promotion_rule.rules.is_subscribed_to_newsletter
+    
+    
+    app.promotion_action.unit_percentage_discount_with_product_variant:
+        class: Sylius\Component\Core\Promotion\Action\UnitPercentageDiscountPromotionActionCommand
+        arguments:
+            $adjustmentFactory: '@sylius.factory.adjustment'
+            $priceRangeFilter: '@sylius.promotion_filter.price_range'
+            $taxonFilter: '@sylius.promotion_filter.taxon'
+            $productFilter: '@App\Promotion\Filter\ProductVariantFilter'
+        tags:
+            - name: sylius.promotion_action
+              type: unit_percentage_discount_with_product_variant
+              label: app.form.promotion_action.unit_percentage_discount_with_product_variant
+              form_type: App\Promotion\Form\Type\Action\ChannelBasedUnitPercentageDiscountConfigurationType
+
+
+    App\Promotion\Form\Type\Filter\ProductVariantsFilterConfigurationType:
+        arguments:
+            $productVariantsToCodesTransformer: '@sylius.form.type.data_transformer.product_variants_to_codes'

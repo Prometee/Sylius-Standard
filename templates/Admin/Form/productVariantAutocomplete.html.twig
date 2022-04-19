@@ -1,0 +1,6 @@
+{% block app_product_variant_autocomplete_choice_row %}
+    {{ form_row(form, {
+        'remote_url': path('sylius_admin_ajax_all_product_variants_by_phrase'),
+        'load_edit_url': path('sylius_admin_ajax_all_product_variants_by_codes')
+    }) }}
+{% endblock %}

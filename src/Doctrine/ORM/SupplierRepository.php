@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Doctrine\Repository;
+namespace App\Doctrine\ORM;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 

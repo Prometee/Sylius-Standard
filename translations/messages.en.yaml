@@ -15,7 +15,21 @@ app:
             one_click: Buy now !
             one_click_no_default_address: Add a default address to buy now !
             one_click_not_logged_in: Login to buy now !
+        promotion_rule:
+            rules:
+                never_has_those_promotions_applied: '[APP] Never has those promotions applied'
+                is_subscribed_to_newsletter: '[APP] Is subscribed to newsletter'
+
     form:
+        promotion_filter:
+            product_variants: Product variants
+        promotion_action:
+            unit_percentage_discount_with_product_variant: '[APP] Unit percentage discount with product variant'
+        promotion_rule:
+            never_has_those_promotions_applied:
+                promotions: Promotions
+            is_subscribed_to_newsletter:
+                is_subscribed: Is subscribed ?
         supplier:
             name: Name
             email: Email

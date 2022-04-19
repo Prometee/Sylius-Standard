@@ -1,0 +1,6 @@
+{% block app_promotion_autocomplete_choice_row %}
+    {{ form_row(form, {
+        'remote_url': path('app_admin_ajax_promotion_by_name'),
+        'load_edit_url': path('app_admin_ajax_promotion_by_codes')
+    }) }}
+{% endblock %}

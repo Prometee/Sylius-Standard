@@ -2,6 +2,9 @@ twig:
     paths: ['%kernel.project_dir%/templates']
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'Admin/Form/promotionAutocomplete.html.twig'
+        - 'Admin/Form/productVariantAutocomplete.html.twig'
 
 services:
     _defaults:

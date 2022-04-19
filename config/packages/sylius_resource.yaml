@@ -4,5 +4,5 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: App\Entity\Supplier
-                repository: App\Doctrine\Repository\SupplierRepository
+                repository: App\Doctrine\ORM\SupplierRepository
                 form: App\Form\Type\SupplierType
