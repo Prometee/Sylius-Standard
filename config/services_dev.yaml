@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Graphviz\Action\WinzouStateMachineToGraphvizAction:
+        public: true
+        arguments:
+            $smConfig: '%sm.configs%'
+            $dumper: '@App\Graphviz\Dumper\StateMachineGraphvizDumper'

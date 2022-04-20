@@ -1,3 +1,4 @@
+# config/packages/winzou_state_machine.yaml
 winzou_state_machine:
     app_supplier:
         class: '%app.model.supplier.class%'

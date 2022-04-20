@@ -1,0 +1,4 @@
+winzou_state_machine_to_graphviz:
+    controller: App\Graphviz\Action\WinzouStateMachineToGraphvizAction::__invoke
+    path:     /smv/{machineName}.{format}
+    methods: [ GET ]
