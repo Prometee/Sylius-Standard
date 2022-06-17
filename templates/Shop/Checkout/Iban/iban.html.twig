@@ -1,0 +1,37 @@
+{# @var \Symfony\Component\Form\FormView form #}
+{% extends '@SyliusShop/Checkout/layout.html.twig' %}
+
+{% form_theme form '@SyliusUi/Form/theme.html.twig' %}
+
+{% block content %}
+    {{ sylius_template_event(['app.shop.checkout.iban.after_steps', 'sylius.shop.checkout.steps'], _context|merge({'active': 'iban'})) }}
+    <div class="ui stackable grid">
+        <div class="eleven wide column">
+            <div class="ui segment">
+
+                <h3 class="ui dividing header">Iban step</h3>
+
+                {{ sylius_template_event('app.shop.checkout.iban.before_form', {'order': order}) }}
+
+                {{ form_start(form, {'action': path('app_checkout_iban'), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+
+                {{ form_errors(form) }}
+
+                <input type="hidden" name="_method" value="PUT" />
+
+                {% include 'Shop/Checkout/Iban/_form.html.twig' %}
+                <div class="ui hidden divider"></div>
+
+                {{ sylius_template_event('app.shop.checkout.iban.before_navigation', {'order': order}) }}
+
+                {% include 'Shop/Checkout/Iban/_navigation.html.twig' %}
+
+                {{ form_row(form._token) }}
+                {{ form_end(form, {'render_rest': false}) }}
+            </div>
+        </div>
+        <div class="five wide column">
+            {{ sylius_template_event(['app.shop.checkout.iban.sidebar', 'sylius.shop.checkout.sidebar'], _context) }}
+        </div>
+    </div>
+{% endblock %}

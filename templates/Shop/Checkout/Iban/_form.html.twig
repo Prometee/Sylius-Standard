@@ -1,0 +1,9 @@
+<div id="sylius-iban" {{ sylius_test_html_attribute('shipping-address') }}>
+    <div class="ui hidden divider"></div>
+
+    {{ form_row(form.iban) }}
+
+    {{ dump() }}
+
+    {{ sylius_template_event('sylius.shop.checkout.iban.iban_form', _context) }}
+</div>

@@ -8,3 +8,21 @@ app_shop_one_click_checkout:
             state_machine:
                 graph: sylius_order_checkout
                 transition: address
+
+app_checkout_iban:
+    path: /{_locale}/checkout/iban
+    methods: [GET, PUT]
+    defaults:
+        _controller: sylius.controller.order::updateAction
+        _sylius:
+            event: ibaned
+            flash: true
+            template: "Shop/Checkout/Iban/iban.html.twig"
+            form: App\Form\Type\OrderIbanType
+            repository:
+                method: findCartForAddressing
+                arguments:
+                    - "expr:service('sylius.context.cart').getCart().getId()"
+            state_machine:
+                graph: sylius_order_checkout
+                transition: iban

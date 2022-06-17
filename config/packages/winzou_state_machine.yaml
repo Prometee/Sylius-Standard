@@ -1,5 +1,13 @@
 # config/packages/winzou_state_machine.yaml
 winzou_state_machine:
+    
+    sylius_order_checkout:
+        states:
+            ibaned: ~
+        transitions:
+            iban:
+                from: [addressed]
+                to: ibaned
     app_supplier:
         class: '%app.model.supplier.class%'
         property_path: status

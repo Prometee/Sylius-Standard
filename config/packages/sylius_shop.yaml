@@ -1,0 +1,5 @@
+sylius_shop:
+    checkout_resolver:
+        route_map:
+            ibaned:
+                route: sylius_shop_checkout_select_payment
