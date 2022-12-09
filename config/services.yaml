@@ -1,7 +1,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en_US
+    locale: fr
 
 services:
     # Default configuration for services in *this* file
@@ -33,3 +33,19 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Menu\AdminMenuListener:
+        tags:
+            -   name: kernel.event_listener
+                event: sylius.menu.admin.main
+                method: addAdminMenuItems
+
+    App\Order\Modifier\CustomOrderModifier:
+        decorates: sylius.order_modifier
+        
+    App\Order\Processor\AddCardToNonCardedOrderItemProcessor:
+        arguments:
+            $orderItemFactory: '@sylius.factory.order_item'
+        tags:
+            - name: sylius.order_processor
+              priority: 70

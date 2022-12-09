@@ -46,9 +46,6 @@
     "upath": "^2.0.1",
     "yargs": "^17.5.1"
   },
-  "engines": {
-    "node": "^14 || ^16 || ^18"
-  },
   "engineStrict": true,
   "scripts": {
     "watch": "encore dev --watch",

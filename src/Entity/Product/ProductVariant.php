@@ -14,8 +14,22 @@ use Sylius\Component\Product\Model\ProductVariantTranslationInterface;
  */
 class ProductVariant extends BaseProductVariant
 {
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected bool $stackable = false;
     protected function createTranslation(): ProductVariantTranslationInterface
     {
         return new ProductVariantTranslation();
+    }
+
+    public function isStackable(): bool
+    {
+        return $this->stackable;
+    }
+
+    public function setStackable(bool $stackable): void
+    {
+        $this->stackable = $stackable;
     }
 }

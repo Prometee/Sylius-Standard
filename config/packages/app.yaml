@@ -1,0 +1,54 @@
+sylius_resource:
+    resources:
+        app.billetique_card:
+            driver: doctrine/orm
+            classes:
+                model: App\Entity\BilletiqueCard
+                form: App\Form\BilletiqueCardFormType
+                
+sylius_grid:
+    grids:
+        app_admin_billetique_card:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: 'expr:parameter("app.model.billetique_card.class")'
+            fields:
+                name:
+                    type: string
+                    label: sylius.ui.name
+                customer:
+                    type: string
+                    label: sylius.ui.customer
+            filters:
+                name:
+                    type: string
+                    label: sylius.ui.name
+                customer:
+                    type: string
+                    label: sylius.ui.customer
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete
+
+sylius_customer:
+    resources:
+        customer:
+            classes:
+                repository: App\Doctrine\ORM\CustomerRepository
+
+sylius_ui:
+    events:
+        sylius.shop.product.show.add_to_cart_form:
+            blocks:
+                billetique_cards:
+                    template: 'Shop/OrderItem/billetiqueCards.html.twig'

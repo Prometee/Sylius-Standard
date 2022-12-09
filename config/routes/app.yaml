@@ -1,0 +1,44 @@
+app_admin_billetique_card:
+    resource: |
+        alias: app.billetique_card
+        section: admin
+        templates: "@SyliusAdmin/Crud"
+        redirect: update
+        grid: app_admin_billetique_card
+        vars:
+            all:
+                subheader: app.ui.billetique_card
+            index:
+                icon: 'file image outline'
+    type: sylius.resource
+    prefix: '/%sylius_admin.path_name%'
+
+app_admin_ajax_subscription_customer_by_id:
+    path: '/%sylius_admin.path_name%/ajax/app/customer/ids'
+    methods: [ GET ]
+    defaults:
+        _controller: sylius.controller.customer::indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [ Default ]
+            section: admin
+            permission: true
+            repository:
+                method: findById
+                arguments:
+                    - $id
+
+app_admin_ajax_subscription_customer_search:
+    path: '/%sylius_admin.path_name%/ajax/app/customer/search'
+    methods: [ GET ]
+    defaults:
+        _controller: sylius.controller.customer::indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [ Default ]
+            section: admin
+            permission: true
+            repository:
+                method: findByEmailPart
+                arguments:
+                    email: $email

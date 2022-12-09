@@ -1,0 +1,6 @@
+{% block app_customer_autocomplete_choice_row %}
+    {{ form_row(form, {
+        'remote_url': path('app_admin_ajax_subscription_customer_search'),
+        'load_edit_url': path('app_admin_ajax_subscription_customer_by_id')
+    }) }}
+{% endblock %}

@@ -1,0 +1,11 @@
+app:
+    ui:
+        agglo: 'Agglomération'
+        
+        billetique_cards: 'Cartes'
+        billetique_card: 'Cartes'
+        edit_billetique_card: 'Edit Carte'
+
+    form:
+        billetique_card:
+            name: 'Nom'

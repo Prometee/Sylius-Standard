@@ -1,0 +1,3 @@
+app:
+    order_item:
+        has_error: 'Nous ne pouvons ajouter d''autre produit qu''un produit stackable !'

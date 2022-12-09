@@ -1,0 +1,10 @@
+{% include "@!SyliusShop/Cart/Summary/_item.html.twig" %}
+
+<tr {{ sylius_test_html_attribute('cart-product-row-billetique-card', item.productName) }}>
+    <td colspan="5">
+        {{ form_row(
+            form.billetique_card,
+            sylius_test_form_attribute('cart-item-billetique-card-input', item.productName)|sylius_merge_recursive({'attr': {'form': main_form}})
+        ) }}
+    </td>
+</tr>
