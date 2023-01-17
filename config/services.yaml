@@ -33,3 +33,9 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Checkout\CompletedCheckoutStateUrlGenerator:
+        autowire: false
+        decorates: sylius.router.checkout_state
+        arguments:
+            $decoratedCheckoutStateUrlGenerator: '@App\Checkout\CompletedCheckoutStateUrlGenerator.inner'

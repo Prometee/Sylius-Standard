@@ -1,0 +1,14 @@
+winzou_state_machine:
+    sylius_order_checkout:
+        callbacks:
+            after:
+                skip_complete_page:
+                    on: ["select_payment", "skip_payment"]
+                    do: ["@sm.callback.cascade_transition", "apply"]
+                    args: ["object", "event", "'complete'", "'sylius_order_checkout'"]
+                    
+sylius_shop:
+    checkout_resolver:
+        route_map:
+            completed:
+                route: sylius_shop_order_pay
