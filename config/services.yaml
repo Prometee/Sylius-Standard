@@ -33,3 +33,7 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\OrderProcessor\SetDefaultAddressOrderProcessor:
+        tags:
+            - { name: sylius.order_processor, priority: 70 }
