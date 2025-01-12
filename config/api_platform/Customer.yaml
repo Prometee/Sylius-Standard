@@ -1,0 +1,15 @@
+resources:
+    '%sylius.model.customer.class%':
+        operations:
+            ApiPlatform\Metadata\Post:
+                name: sylius_api_shop_customer_post
+                input: App\Api\Command\Account\RegisterShopUser
+                uriTemplate: '/shop/customers'
+                messenger: input
+                output: false
+                denormalizationContext:
+                    groups:
+                        - sylius:shop:customer:create
+                validationContext:
+                    groups:
+                        - sylius
