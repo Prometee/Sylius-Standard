@@ -1,0 +1,2 @@
+api_refresh_token:
+    path: "%sylius.security.api_shop_route%/customers/token/refresh"

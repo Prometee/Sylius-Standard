@@ -66,6 +66,8 @@ security:
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
             jwt: true
+            refresh_jwt:
+                check_path: api_refresh_token
 
         shop:
             switch_user: { role: ROLE_ALLOWED_TO_SWITCH }
